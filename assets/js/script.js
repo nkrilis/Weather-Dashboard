@@ -8,7 +8,7 @@ let cityHistory = [];
 
 function getApi ()
 {
-    let requestUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" +searchTextEl.val()+ "&units=imperial&appid=508452a6fa84f5b2f7dd18f0d69be33b";
+    let requestUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" +searchTextEl.val()+ "&units=metric&appid=508452a6fa84f5b2f7dd18f0d69be33b";
     fetch(requestUrl)
     .then(function (response) 
     {
@@ -33,5 +33,3 @@ function getApi ()
 }
 
 searchBtnEl.click(getApi);
-
-console.log(city);
