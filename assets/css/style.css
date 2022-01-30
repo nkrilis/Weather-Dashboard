@@ -1,0 +1,10 @@
+:root 
+{
+    --purple-accent : rgb(89, 89, 211);   
+}
+
+.custom-bg
+{
+    background-color: var(--purple-accent);
+    color: white;
+}
