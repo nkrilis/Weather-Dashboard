@@ -22,7 +22,7 @@ function getApi ()
     let urlCheck;
     
     // call api to convert city name to lon and lad
-    let convertCityUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" +searchTextEl.val()+ "&limit=5&appid=508452a6fa84f5b2f7dd18f0d69be33b";
+    let convertCityUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" +searchTextEl.val()+ "&limit=5&appid=508452a6fa84f5b2f7dd18f0d69be33b";
     fetch(convertCityUrl)
     .then(function (response) 
     {
