@@ -62,3 +62,7 @@ let convertCityUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" +searchTe
 ```
 
 ![Weather-Image](./assets/images/screen1.png)
+
+### You can view the deployed application via [Weather Dashboard](https://nkrilis.github.io/Weather-Dashboard/) 
+### You can also view my javascript here [script.js](./assets/scripts/script.js)
+### Thank you for reading me :smiley:
