@@ -12,15 +12,16 @@ let humidEl = $("#humidity");
 let uvEl = $("#uv");
 let iconEl = $("#main-icon");
 
-
+// Array for storing the city names entered
 let cityInfoList = [];
 let cityName;
 
-
+// Main function that gets api and does all the work
 function getApi ()
 {
     let urlCheck;
-
+    
+    // call api to convert city name to lon and lad
     let convertCityUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" +searchTextEl.val()+ "&limit=5&appid=508452a6fa84f5b2f7dd18f0d69be33b";
     fetch(convertCityUrl)
     .then(function (response) 
@@ -30,11 +31,13 @@ function getApi ()
     })
     .then(function (data) 
     {
+        // Saving the city name in local storage through function
         console.log(data);
         cityName = data[0].name;
         cityInfoList.push(cityName); 
         saveInLocalStorage(data[0].name);
 
+        // Api request for the 5 day forecast
         let requestUrl = "https://api.openweathermap.org/data/2.5/onecall?lat="+ data[0].lat +"&lon="+ data[0].lon +"&exclude=hourly,alerts,minutely&units=metric&appid=508452a6fa84f5b2f7dd18f0d69be33b";
         fetch(requestUrl)
         .then(function (response) 
@@ -45,6 +48,7 @@ function getApi ()
         {
             console.log(data);
 
+            // Updating all the elements on the page to display the information from the api call
             $("#All-info").removeClass("visually-hidden");
             $("#error-message").addClass("visually-hidden");
             console.log( cityName + " Weather \n----------");
@@ -74,6 +78,7 @@ function getApi ()
                 uvEl.addClass("bg-danger p-2 rounded");
             }
             
+            // loop to populate each day of the forecast
             for(let i = 0; i < 5; i++)
             {
 
@@ -85,10 +90,12 @@ function getApi ()
             }
 
         });
+        // Function call to create the list of searched cities
         cityHistory();
     });  
 }
 
+// Creates the history list
 function cityHistory() 
 {
     $( "[id=list-item]" ).remove();
@@ -108,6 +115,7 @@ function cityHistory()
         
     }
 
+    // Add a click event listener to update the search result
     document.querySelectorAll("#list-item").forEach(item => 
     {
         item.addEventListener('click', event => 
@@ -121,6 +129,7 @@ function cityHistory()
 
 }
 
+// Function to save the history in local storage
 function saveInLocalStorage (name)
 {
     let data = localStorage.getItem("Cities");
