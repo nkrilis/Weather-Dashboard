@@ -1,10 +1,16 @@
 :root 
 {
-    --purple-accent : rgb(89, 89, 211);   
+    --purple : rgb(89, 89, 211);
+    --purple-accent : rgb(180, 180, 233);   
 }
 
 .custom-bg
 {
-    background-color: var(--purple-accent);
+    background-color: var(--purple);
     color: white;
+}
+
+.card-custom
+{
+    background-color: var(--purple-accent);
 }

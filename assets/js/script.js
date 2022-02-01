@@ -1,3 +1,4 @@
+// Current time
 let currTime = moment();
 
 let searchTextEl = $("#search-text");
@@ -9,6 +10,7 @@ let tempEl = $("#temp");
 let windEl = $("#wind");
 let humidEl = $("#humidity");
 let uvEl = $("#uv");
+let iconEl = $("#main-icon");
 
 
 let cityInfoList = [];
@@ -49,6 +51,8 @@ function getApi ()
 
             cityEl.text(cityName + " " + currTime.format("M/D/YYYY"));
 
+            iconEl.attr("src", "http://openweathermap.org/img/wn/"+data.current.weather[0].icon+"@2x.png")
+
             tempEl.text("Temp: " + data.current.temp + "°C");
 
             windEl.text("Wind: " + data.current.wind_speed + " km/h");
@@ -56,11 +60,25 @@ function getApi ()
             humidEl.text("Humidity: " + data.current.humidity);
 
             uvEl.text("UV Index: " + data.current.uvi)
+
+            if(data.current.uvi <= 2)
+            {
+                uvEl.addClass("bg-success p-2 rounded");
+            }
+            else if(data.current.uvi <= 7)
+            {
+                uvEl.addClass("bg-warning p-2 rounded");
+            }
+            else if(data.current.uvi >= 11)
+            {
+                uvEl.addClass("bg-danger p-2 rounded");
+            }
             
             for(let i = 0; i < 5; i++)
             {
 
                 $("[id=date]").eq(i).text(moment.unix(data.daily[i].dt).format("M/D/YYYY"));
+                $("[id=icon]").eq(i).attr("src", "http://openweathermap.org/img/wn/"+data.daily[i].weather[0].icon+".png")
                 $("[id=day-temp]").eq(i).text("Temp: " +data.daily[i].temp.day+ "°C");
                 $("[id=day-wind]").eq(i).text("Wind: " +data.daily[i].wind_speed+ " km/h");
                 $("[id=day-humid]").eq(i).text("Humidity: " +data.daily[i].humidity);
