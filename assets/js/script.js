@@ -28,9 +28,11 @@ function getApi ()
     {
         urlCheck = response.status;
         return response.json();
+        console.log(urlCheck);
     })
     .then(function (data) 
     {
+        $("#error-message").addClass("visually-hidden");
         // Saving the city name in local storage through function
         console.log(data);
         cityName = data[0].name;
